@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Force context to be repository root
-cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
 
 # Load variables
 source variables.env
