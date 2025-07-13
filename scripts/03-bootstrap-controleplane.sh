@@ -1,10 +1,14 @@
 #!/bin/bash
 
-# Variables, with default values
-BOOTSTRAP_CONTROLPLANE_IP="${BOOTSTRAP_CONTROLPLANE_IP:-192.168.1.106}"
-
 # Force context to be repository root
 cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd
 
+# Load variables
+source variables.env
+
+# Split control planes IPs and use first one to bootstrap
+ips=(${CONTROLPLANES_IPS//,/ })
+ip=${ips[0]}
+
 # Bootstrap first control plane (one and only one needed)
-talosctl bootstrap --nodes "${BOOTSTRAP_CONTROLPLANE_IP}" --endpoints "${BOOTSTRAP_CONTROLPLANE_IP}" --talosconfig=./talosconfig
+talosctl bootstrap --nodes "${ip}" --endpoints "${ip}" --talosconfig=./talosconfig
