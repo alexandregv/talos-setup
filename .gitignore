@@ -2,3 +2,4 @@ controlplane.yaml
 worker.yaml
 talosconfig
 config
+patches/cilium-patch.yaml
