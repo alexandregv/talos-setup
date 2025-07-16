@@ -15,6 +15,7 @@ ips=(${CONTROLPLANES_IPS//,/ })
 ip=${ips[0]}
 
 # Generate cilium config and insert it in a talos patch
+cp patches/cilium-patch.yaml.sample patches/cilium-patch.yaml
 helm template cilium cilium/cilium \
   --version 1.17.5 \
   --namespace kube-system \

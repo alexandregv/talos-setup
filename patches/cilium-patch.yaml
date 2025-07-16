@@ -1,4 +1,0 @@
-cluster:
-  inlineManifests:
-    - name: cilium
-      contents: | # <inline output of helm template command> (contains sensitive data)

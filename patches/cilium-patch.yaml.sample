@@ -1,0 +1,6 @@
+# vi: ft=yaml
+
+cluster:
+  inlineManifests:
+    - name: cilium
+      contents: | # <output of helm template command> (contains sensitive data)
