@@ -42,4 +42,10 @@ talosctl gen config "${CLUSTER_NAME}" "https://${ip}:6443" \
 # Rename config to expected file name
 mv talosconfig config
 
+# Set endpoints to control planes in config file
+talosctl config endpoint ${CONTROLPLANES_IPS//,/ }
+
+# Set default node to first control plane (should generally be overridden with `-n <target node>`)
+talosctl config node "${ip}"
+
 #TODO: kubespan, host firewall DNS (Talos or Cilium?), VIP
