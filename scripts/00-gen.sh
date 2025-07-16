@@ -34,6 +34,7 @@ helm template cilium cilium/cilium \
 talosctl gen config "${CLUSTER_NAME}" "https://${ip}:6443" \
   --config-patch @patches/cni-patch.yaml \
   --config-patch @patches/rotate-certs-patch.yaml \
+  --config-patch @patches/time-servers-patch.yaml \
   --config-patch-control-plane @patches/cilium-patch.yaml \
   --config-patch-control-plane @patches/bootstrap-extra-manifests.yaml \
   --install-image "${INSTALLER_IMAGE}" \
