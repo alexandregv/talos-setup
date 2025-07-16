@@ -39,4 +39,7 @@ talosctl gen config "${CLUSTER_NAME}" "https://${ip}:6443" \
   --install-image "${INSTALLER_IMAGE}" \
   --install-disk "${INSTALL_DISK}"
 
+# Rename config to expected file name
+mv talosconfig config
+
 #TODO: kubespan, host firewall DNS (Talos or Cilium?), VIP
