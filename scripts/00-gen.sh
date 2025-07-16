@@ -15,7 +15,7 @@ ips=(${CONTROLPLANES_IPS//,/ })
 ip=${ips[0]}
 
 # Generate cilium config and insert it in a talos patch
-cp patches/cilium-patch.yaml.sample patches/cilium-patch.yaml
+cp patches/cilium.yaml.sample patches/cilium.yaml
 helm template cilium cilium/cilium \
   --version 1.17.5 \
   --namespace kube-system \
@@ -28,15 +28,15 @@ helm template cilium cilium/cilium \
   --set k8sServiceHost=localhost \
   --set k8sServicePort=7445 \
   --set hubble.relay.enabled=true \
-  --set hubble.ui.enabled=true | sed 's/^/        /' >> patches/cilium-patch.yaml
+  --set hubble.ui.enabled=true | sed 's/^/        /' >> patches/cilium.yaml
 
 # Generate talos config with variables and patches
 talosctl gen config "${CLUSTER_NAME}" "https://${ip}:6443" \
-  --config-patch @patches/cni-patch.yaml \
-  --config-patch @patches/rotate-certs-patch.yaml \
-  --config-patch @patches/time-servers-patch.yaml \
-  --config-patch-control-plane @patches/cilium-patch.yaml \
-  --config-patch-control-plane @patches/bootstrap-extra-manifests.yaml \
+  --config-patch @patches/cni.yaml \
+  --config-patch @patches/metrics-server-all.yaml \
+  --config-patch @patches/time-servers.yaml \
+  --config-patch-control-plane @patches/cilium.yaml \
+  --config-patch-control-plane @patches/metrics-server-bootstrap.yaml \
   --install-image "${INSTALLER_IMAGE}" \
   --install-disk "${INSTALL_DISK}"
 
