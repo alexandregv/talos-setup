@@ -15,4 +15,4 @@ ips=(${CONTROLPLANES_IPS//,/ })
 ip=${ips[0]}
 
 # Generate kubeconfig and add to existing config
-talosctl kubeconfig --nodes "${ip}" --endpoints "${ip}" --talosconfig=./talosconfig
+talosctl kubeconfig --nodes "${ip}" --endpoints "${ip}"
