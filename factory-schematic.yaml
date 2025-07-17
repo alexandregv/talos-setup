@@ -1,0 +1,16 @@
+# See https://www.talos.dev/v1.6/talos-guides/install/boot-assets/#image-factory
+#
+# https://factory.talos.dev/?arch=amd64&cmdline-set=true&extensions=-&extensions=siderolabs%2Fiscsi-tools&extensions=siderolabs%2Futil-linux-tools&extensions=siderolabs%2Fxen-guest-agent&platform=metal&secureboot=true&target=metal&version=1.10.5
+#
+# $ curl -X POST --data-binary @factory-schematic.yaml https://factory.talos.dev/schematics
+# {"id":"58eedd04d458e2c900727f5a3af74a3ef6453b9902b23decb590c0007388187a"}
+#
+# https://factory.talos.dev/image/58eedd04d458e2c900727f5a3af74a3ef6453b9902b23decb590c0007388187a/v1.10.5/metal-amd64-secureboot.iso
+# factory.talos.dev/metal-installer-secureboot/58eedd04d458e2c900727f5a3af74a3ef6453b9902b23decb590c0007388187a:v1.10.5
+
+customization:
+  systemExtensions:
+    officialExtensions:
+      - siderolabs/iscsi-tools      # Longhorn
+      - siderolabs/util-linux-tools # Longhorn
+      - siderolabs/xen-guest-agent  # XCP-ng
