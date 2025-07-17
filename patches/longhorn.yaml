@@ -1,0 +1,27 @@
+# See https://longhorn.io/docs/1.9.0/advanced-resources/os-distro-specific/talos-linux-support/
+
+customization:
+  systemExtensions:
+    officialExtensions:
+      - siderolabs/iscsi-tools
+      - siderolabs/util-linux-tools
+
+machine:
+  kubelet:
+    extraMounts:
+      - destination: /var/lib/longhorn
+        type: bind
+        source: /var/lib/longhorn
+        options:
+          - bind
+          - rshared
+          - rw
+
+  # V2 Data Engine (experimental) https://longhorn.io/docs/1.9.0/advanced-resources/os-distro-specific/talos-linux-support/#v2-data-engine
+  #sysctls:
+  #  vm.nr_hugepages: "1024"
+  #kernel:
+  #  modules:
+  #    - name: nvme_tcp
+  #    - name: vfio_pci
+  #    - name: uio_pci_generic
