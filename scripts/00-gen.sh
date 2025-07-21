@@ -17,7 +17,7 @@ ip=${ips[0]}
 # Generate cilium config and insert it in a talos patch
 cp patches/cilium.yaml.sample patches/cilium.yaml
 helm template cilium cilium/cilium \
-  --version 1.17.5 \
+  --version "${CILIUM_VERSION}" \
   --namespace kube-system \
   --set ipam.mode=kubernetes \
   --set kubeProxyReplacement=true \
